@@ -1,0 +1,13 @@
+<div class="bus-list-container">
+  <h2>Available Buses</h2>
+  
+  <div *ngFor="let bus of busData['buses']" class="bus-card">
+    <h3>{{ bus.name }}</h3>
+    <p><strong>Type:</strong> {{ bus.type }}</p>
+    <p><strong>Departure:</strong> {{ bus.departure }}</p>
+    <p><strong>Duration:</strong> {{ bus.duration }}</p>
+    <p><strong>Fare:</strong> ₹{{ bus.fare }}</p>
+    <p><strong>Available Seats:</strong> {{ bus.availableSeats }}</p>
+    <button (click)="selectBus(bus)">Select Bus</button>
+  </div>
+</div>

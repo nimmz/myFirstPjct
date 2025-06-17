@@ -1,0 +1,53 @@
+<div class="passenger-info-container">
+  <h2>Enter Passenger Details</h2>
+  
+  <div *ngFor="let seat of selectedSeats; let i = index" class="passenger-form">
+    <h3>Passenger {{i + 1}} - Seat {{seat.seatNumber}}</h3>
+    <form [formGroup]="passengerForms[i]">
+      <div class="form-group">
+        <label for="name{{i}}">Name:</label>
+        <input id="name{{i}}" formControlName="name" class="form-input" placeholder="Enter passenger name"/>
+        <div class="error-message" *ngIf="passengerForms[i].get('name')?.errors?.['required'] && passengerForms[i].get('name')?.touched">
+          Name is required
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="age{{i}}">Age:</label>
+        <input id="age{{i}}" formControlName="age" type="number" class="form-input" placeholder="Enter age"/>
+        <div class="error-message" *ngIf="passengerForms[i].get('age')?.errors?.['required'] && passengerForms[i].get('age')?.touched">
+          Age is required
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="gender{{i}}">Gender:</label>
+        <select id="gender{{i}}" formControlName="gender" class="form-select">
+          <option value="">Select Gender</option>
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+          <option value="other">Other</option>
+        </select>
+        <div class="error-message" *ngIf="passengerForms[i].get('gender')?.errors?.['required'] && passengerForms[i].get('gender')?.touched">
+          Gender is required
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <div class="contact-details">
+    <h3>Contact Details</h3>
+    <div class="form-group">
+      <label for="contact">Contact Number:</label>
+      <input id="contact" [(ngModel)]="contactNumber" class="form-input" placeholder="Enter contact number"/>
+    </div>
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input id="email" [(ngModel)]="email" type="email" class="form-input" placeholder="Enter email"/>
+    </div>
+  </div>
+
+  <div class="button-container">
+    <button (click)="onSubmit()" class="submit-button">Continue to Review</button>
+  </div>
+</div>

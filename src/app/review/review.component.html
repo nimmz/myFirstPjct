@@ -1,0 +1,91 @@
+<div class="review-container">
+  <h2>Review Your Booking</h2>
+
+  <div *ngIf="bookingDetails" class="booking-details">
+    <div class="section bus-details">
+      <h3>Bus Details</h3>
+      <div class="detail-grid">
+        <div class="detail-item">
+          <span class="label">Bus Name:</span>
+          <span class="value">{{bookingDetails.selectedBus.name}}</span>
+        </div>
+        <div class="detail-item">
+          <span class="label">Type:</span>
+          <span class="value">{{bookingDetails.selectedBus.type}}</span>
+        </div>
+        <div class="detail-item">
+          <span class="label">Departure:</span>
+          <span class="value">{{bookingDetails.selectedBus.departure}}</span>
+        </div>
+        <div class="detail-item">
+          <span class="label">Duration:</span>
+          <span class="value">{{bookingDetails.selectedBus.duration}}</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="section passenger-details">
+      <h3>Passenger Details</h3>
+      <div class="passenger-list">
+        <div *ngFor="let passenger of bookingDetails.passengers" class="passenger-card">
+          <h4>Seat {{passenger.seatNumber}}</h4>
+          <div class="detail-grid">
+            <div class="detail-item">
+              <span class="label">Name:</span>
+              <span class="value">{{passenger.name}}</span>
+            </div>
+            <div class="detail-item">
+              <span class="label">Age:</span>
+              <span class="value">{{passenger.age}}</span>
+            </div>
+            <div class="detail-item">
+              <span class="label">Gender:</span>
+              <span class="value">{{passenger.gender}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section contact-details">
+      <h3>Contact Details</h3>
+      <div class="detail-grid">
+        <div class="detail-item">
+          <span class="label">Phone:</span>
+          <span class="value">{{bookingDetails.contactDetails.phone}}</span>
+        </div>
+        <div class="detail-item">
+          <span class="label">Email:</span>
+          <span class="value">{{bookingDetails.contactDetails.email}}</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="section fare-details">
+      <h3>Fare Details</h3>
+      <div class="detail-grid">
+        <div class="detail-item">
+          <span class="label">Fare per seat:</span>
+          <span class="value">₹{{bookingDetails.selectedBus.fare}}</span>
+        </div>
+        <div class="detail-item">
+          <span class="label">Number of seats:</span>
+          <span class="value">{{bookingDetails.passengers.length}}</span>
+        </div>
+        <div class="detail-item total">
+          <span class="label">Total Fare:</span>
+          <span class="value">₹{{bookingDetails.totalFare}}</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="actions">
+      <button (click)="confirmBooking()" class="confirm-button">Confirm Booking</button>
+    </div>
+  </div>
+
+  <div *ngIf="!bookingDetails" class="no-details">
+    <p>No booking details found. Please start your booking from the home page.</p>
+    <button routerLink="/" class="home-button">Go to Home</button>
+  </div>
+</div>

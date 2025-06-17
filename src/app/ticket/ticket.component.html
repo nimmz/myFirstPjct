@@ -1,0 +1,79 @@
+<div class="ticket-confirmation"  id="contentToExport">
+  <h2>Ticket Confirmation</h2>
+
+  <div *ngIf="bookingDetails" class="ticket-details">
+    <div class="ticket-id">
+      Ticket ID: {{ ticketId }}
+    </div>
+
+    <h3>Bus Details</h3>
+    <div class="detail-group">
+      <div class="detail-label">Bus Name</div>
+      <div class="detail-value">{{ bookingDetails.selectedBus.name }}</div>
+    </div>
+    <div class="detail-group">
+      <div class="detail-label">Bus Type</div>
+      <div class="detail-value">{{ bookingDetails.selectedBus.type }}</div>
+    </div>
+    <div class="detail-group">
+      <div class="detail-label">Departure</div>
+      <div class="detail-value">{{ bookingDetails.selectedBus.departure }}</div>
+    </div>
+    <div class="detail-group">
+      <div class="detail-label">Duration</div>
+      <div class="detail-value">{{ bookingDetails.selectedBus.duration }}</div>
+    </div>
+
+    <h3>Passenger Details</h3>
+    <div class="passenger-list">
+      <div *ngFor="let passenger of bookingDetails.passengers" class="passenger-card">
+        <h4>Seat {{ passenger.seatNumber }}</h4>
+        <div class="detail-group">
+          <div class="detail-label">Name</div>
+          <div class="detail-value">{{ passenger.name }}</div>
+        </div>
+        <div class="detail-group">
+          <div class="detail-label">Age</div>
+          <div class="detail-value">{{ passenger.age }}</div>
+        </div>
+        <div class="detail-group">
+          <div class="detail-label">Gender</div>
+          <div class="detail-value">{{ passenger.gender }}</div>
+        </div>
+      </div>
+    </div>
+
+    <h3>Contact Details</h3>
+    <div class="detail-group">
+      <div class="detail-label">Phone</div>
+      <div class="detail-value">{{ bookingDetails.contactDetails.phone }}</div>
+    </div>
+    <div class="detail-group">
+      <div class="detail-label">Email</div>
+      <div class="detail-value">{{ bookingDetails.contactDetails.email }}</div>
+    </div>
+
+    <div class="fare-details">
+      <div class="detail-group">
+        <div class="detail-label">Fare per seat</div>
+        <div class="detail-value">₹{{ bookingDetails.selectedBus.fare }}</div>
+      </div>
+      <div class="detail-group">
+        <div class="detail-label">Number of seats</div>
+        <div class="detail-value">{{ bookingDetails.passengers.length }}</div>
+      </div>
+      <div class="total-fare">
+        Total Fare: ₹{{ bookingDetails.totalFare }}
+      </div>
+    </div>
+  </div>
+
+  <div class="actions">
+    <button (click)="downloadTicket()" class="action-button">
+      <span>Download Ticket</span>
+    </button>
+    <button (click)="printTicket()" class="action-button print">
+      <span>Print Ticket</span>
+    </button>
+  </div>
+</div>

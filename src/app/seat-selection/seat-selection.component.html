@@ -1,0 +1,43 @@
+<div class="seat-selection-container">
+  <h2>Select Your Seats</h2>
+
+  <div class="bus-layout">
+    <div class="seat-grid">
+      <button 
+        *ngFor="let seat of seats"
+        [class]="'seat ' + (seat.available ? (isSelected(seat) ? 'selected' : '') : 'booked')"
+        (click)="selectSeat(seat)"
+        [disabled]="!seat.available"
+      >
+        {{seat.seatNumber}}
+      </button>
+    </div>
+
+    <div class="legend">
+      <div class="legend-item">
+        <div class="legend-color legend-available"></div>
+        <span>Available</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color legend-booked"></div>
+        <span>Booked</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color legend-selected"></div>
+        <span>Selected</span>
+      </div>
+    </div>
+
+    <div class="selected-seats" *ngIf="selectedSeats.length > 0">
+      Selected Seats: {{getSelectedSeatNumbers()}}
+    </div>
+  </div>
+
+  <button 
+    class="proceed-button" 
+    (click)="proceed()"
+    [disabled]="selectedSeats.length === 0"
+  >
+    Continue with {{selectedSeats.length}} Seat{{selectedSeats.length !== 1 ? 's' : ''}}
+  </button>
+</div>
